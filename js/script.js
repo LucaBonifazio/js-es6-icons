@@ -13,3 +13,142 @@
 // Dopodiché, basandoci sul codice di riferimento nel sito di Font Awesome, analizziamo come è formato il tag <i> di un'icona qualsiasi, in particolare focalizziamoci sulle classi.
 // Come possiamo usare i dati presenti nella nostra struttura dati per creare l'elemento html nel modo corretto e visualizzare l'icona in pagina?
 // Inizialmente può essere sufficiente stampare dei semplici div, senza alcuno stile, con all'interno l'icona e uno span con il nome. Solamente quando la parte logica è completa, ci dedichiamo al css.
+
+const arrIcons =[
+	{
+		name: 'cat',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'crow',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'dog',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'dove',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'dragon',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'horse',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'hippo',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'fish',
+		prefix: 'fa-',
+		type: 'animal',
+		family: 'fas',
+		color: 'orange'
+	},
+	{
+		name: 'carrot',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas',
+		color: 'green'
+	},
+	{
+		name: 'apple-alt',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas',
+		color: 'green'
+	},
+	{
+		name: 'lemon',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas',
+		color: 'green'
+	},
+	{
+		name: 'pepper-hot',
+		prefix: 'fa-',
+		type: 'vegetable',
+		family: 'fas',
+		color: 'green'
+	},
+	{
+		name: 'user-astronaut',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas',
+		color: 'blue'
+	},
+	{
+		name: 'user-graduate',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas',
+		color: 'blue'
+	},
+	{
+		name: 'user-ninja',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas',
+		color: 'blue'
+	},
+	{
+		name: 'user-secret',
+		prefix: 'fa-',
+		type: 'user',
+		family: 'fas',
+		color: 'blue'
+	}
+];
+
+const eleCards = document.querySelector('.cards');
+renderInterface(eleCards);
+
+function renderInterface(eleCards) {
+	arrIcons.forEach(objIcon => eleCards.innerHTML += geneateCard(objIcon));
+}
+
+function geneateCard(obj) {
+	return `
+		<div class="card col-3 p-4 text-center">
+            <i class="${obj.prefix}solid ${obj.prefix}${obj.name}"></i> 
+            <div>${obj.name}</div>
+		</div>
+		`;
+}
+
+console.table(arrIcons);
+// name: 'cat',
+// 		prefix: 'fa-',
+// 		type: 'animal',
+// 		family: 'fas',
+// 		color: 'orange'
+// <i class="fa-solid fa-cat"></i>
