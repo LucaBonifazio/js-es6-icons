@@ -124,36 +124,29 @@ function renderInterface(eleCards) {
 function geneateCard(obj) {
 	return `
 		<div class="card col-3 p-4 text-center">
-            <i class="${obj.family} ${obj.prefix}${obj.name} text-${obj.color}"></i> 
+            <i class="${obj.family} ${obj.prefix}${obj.name} fs-1" style = "color:${obj.color}";></i> 
             <div>${obj.name}</div>
 		</div>
     `;
 }
 
-// const arrAnimals = arrIcons.filter(objIcon => objIcon.type === 'animal');
-// const arrVegetables = arrIcons.filter(objIcon => objIcon.type === 'vegetable');
-// const arrUsers = arrIcons.filter(objIcon => objIcon.type !== 'user' && objIcon.type !== 'user');
-
-const arrAnimals = [], arrVegetables = [], arrUsers = [];
-
 function mySelect() {
-    const eleType = eleSelect.value;
-    eleCards.innerHTML = eleType;
 
-    arrIcons.forEach(objIcon => {
-        switch (objIcon.type) {
-            case 'animal':
-                arrAnimals.push(objIcon);
-                break;
-            case 'vegetable':
-                arrVegetables.push(objIcon);
-                break;
-            case 'user':
-                arrUsers.push(objIcon);
-            break;
-            default:
-                arrIcons.push(objIcon);
-                break;
+    const eleType = eleSelect.value;
+    const eleCards = document.querySelectorAll('.card');
+
+    for (let i = 0; i < arrIcons.length; i++) {
+        
+        const card = arrIcons[i];
+        const eleCard = eleCards[i];
+
+        if (eleType !== card.type) {
+            eleCard.classList.add('hidden');
+        } else if (eleType === card.type){
+            eleCard.classList.remove('hidden');
+        } else {
+            
         }
-    });
+    } 
 }
+
