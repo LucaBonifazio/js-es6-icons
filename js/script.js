@@ -1,5 +1,3 @@
-// Milestone 1
-// Partendo dalla struttura dati fornita, visualizzare in pagina un box per ogni icona, in cui è presente il nome dell'icona e l'icona stessa.
 // Milestone 2
 // Ciascuna icona ha una proprietà "color": utilizzare questa proprietà per visualizzare le icone del colore corrispondente.
 // Milestone 3
@@ -128,9 +126,11 @@ const arrIcons =[
 		color: 'blue'
 	}
 ];
+const arrAnimals = [], arrVegetable = [], arrUser = [];
 
 const eleCards = document.querySelector('.cards');
 renderInterface(eleCards);
+const eleSelect = document.querySelector('#type-icon');
 
 function renderInterface(eleCards) {
 	arrIcons.forEach(objIcon => eleCards.innerHTML += geneateCard(objIcon));
@@ -139,16 +139,27 @@ function renderInterface(eleCards) {
 function geneateCard(obj) {
 	return `
 		<div class="card col-3 p-4 text-center">
-            <i class="${obj.prefix}solid ${obj.prefix}${obj.name}"></i> 
+            <i class="${obj.family} ${obj.prefix}${obj.name} text-${obj.color}"></i> 
             <div>${obj.name}</div>
 		</div>
 		`;
 }
 
-console.table(arrIcons);
-// name: 'cat',
-// 		prefix: 'fa-',
-// 		type: 'animal',
-// 		family: 'fas',
-// 		color: 'orange'
-// <i class="fa-solid fa-cat"></i>
+eleSelect.addEventListener('click', () => {
+
+    arrIcons.forEach(objIcon => {
+        switch (objIcon.type) {
+            case 'animal':
+                arrAnimals.push(objIcon);
+                break;
+            case 'vegetable':
+                arrVegetable.push(objIcon);
+                break;
+            case 'user':
+                arrUser.push(objIcon);
+                break;
+            default:
+                arrIcons.push(objIcon);
+        }
+    })
+});
