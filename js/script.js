@@ -114,11 +114,17 @@ const arrIcons =[
 ];
 
 const eleCards = document.querySelector('.cards');
-renderInterface(eleCards);
 const eleSelect = document.querySelector('#type-icon');
 
-function renderInterface(eleCards) {
-	arrIcons.forEach(objIcon => eleCards.innerHTML += geneateCard(objIcon));
+populateSelect(arrIcons, eleSelect);
+randomizeColors(arrIcons);
+renderIcons(arrIcons, eleCards);
+eleSelect.addEventListener('change', filterIcons);
+
+
+function renderIcons(arrData, eleCards) {
+	eleCards.innerHTML = '';
+	arrData.forEach(objIcon => eleCards.innerHTML += geneateCard(objIcon));
 }
 
 function geneateCard(obj) {
@@ -130,23 +136,37 @@ function geneateCard(obj) {
     `;
 }
 
-function mySelect() {
-
-    const eleType = eleSelect.value;
-    const eleCards = document.querySelectorAll('.card');
-
-    for (let i = 0; i < arrIcons.length; i++) {
-        
-        const card = arrIcons[i];
-        const eleCard = eleCards[i];
-
-        if (eleType !== card.type) {
-            eleCard.classList.add('hidden');
-        } else if (eleType === card.type){
-            eleCard.classList.remove('hidden');
-        } else {
-            
-        }
-    } 
+function populateSelect(arrData, eleSelect) {
+	const arrType = [];
+	arrData.forEach(objIcon => arrType.includes(objIcon.type) ? '' : arrType.push(objIcon.type));
+	arrType.forEach(type => eleSelect.innerHTML += `<option value="${type}">${type}</option>`);
 }
 
+function filterIcons() {
+	const selectedType = this.value;
+
+	if (selectedType !== '') {
+		arrIconsFiltered = arrIcons.filter(objIcon => objIcon.type === selectedType)
+	} else {
+		arrIconsFiltered = arrIcons;
+	}
+	
+	renderIcons(arrIconsFiltered, eleCards);
+}
+
+function randomizeColors(arrIcons) {
+	arrIcons.forEach(objIcon => objIcon.color = getRandomColor());
+}
+
+function getRandomColor() {
+	const acceptableChars = '0123456789ABCDEF';
+	let color = '#'
+	for (let i = 0; i < 6; i++) {
+		color += acceptableChars[getRandomInteger(0, 15)];
+	}
+	return color;
+}
+
+function getRandomInteger(min, max) {
+	return Math.floor(Math.random() * (max - min + 1) ) + min;
+}
